@@ -1,17 +1,55 @@
 from Vector import vector3 as vec3
 from Cord import cord as co
+from Material import color
+from Material import texture as tex
+import config as c
+import math
 
 class Object:
-    def __init__(self):
+    def __init__(self,r,g,b,rfc):
         self.cord = []
         self.vector3 = []
+        self.material = []
+        self.color = [r,g,b]
+        self.texture = tex.Texture(rfc)
         self.type = 'polygon'
+        self.size = 0
+    def dot(self,v,index):
+        if index < self.size & index >= 0 
+            return self.vector3[index].dot(self,v)
     def addPolygon(self,x0,y0,z0,x1,y1,z1,x2,y2,z2):
-        v0 = vec3.Vector(x0,y0,z0,x1,y1,z1)
-        v1 = vec3.Vector(x1,y1,z1,x2,y2,z2)
-        v0 = v0.cross(v1)
         self.cord.append([co.Cord(x0,y0,z0),co.Cord(x1,y1,z1),co.Cord(x2,y2,z2)])
+        v0 = vec3.Vector(x0,y0,z0,x1,y1,z1)
+        v1 = vec3.Vector(x2,y2,z2,x1,y1,z1)
+        v0 = v0.cross(v1)
         self.vector3.append(v0)
+        self.size += 1
+    def addSphere(self,x0,y0,z0,r0):
+        t = 0
+        step = c.t_step * math.pi
+        td = 0
+        td_step = c.td_step * math.pi
+
+        # cord0 = co.Cord(x0,y0,z0)
+        #
+        # list_cord0 = []
+        # list_cord0.extend(cord0)
+        # print(list_cord0[0].rotate('z',step))
+        # i = 0
+        # while t < math.pi:
+        #     print(i)
+        #     new_cord0 = list_cord0[i].rotate('z',step)
+        #     list_cord0.extend(new_cord0)
+        #     i += 1
+        #     t += step
+        # list_cord1 = list_cord0.copy()
+        # list_cord1 = [x.rotate('y',td_step) for x in list_cord1]
+    def export(self,layer):
+        print("unfinished")
+
+
+
+
 
 
 #
