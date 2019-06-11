@@ -2,40 +2,79 @@ from Obj import obj as obj
 from Ray import tracer
 import config
 from Util import export as ex
+import pprint
 
-object0 = obj.Object(255,255,250,0)
-#left
-object0.addPolygon(-250,-250,0,
-                    -250,250,500,
-                    -250,250,0)
-object0.addPolygon(-250,-250,0,
-                    -250,-250,500,
-                    -250,250,500)
-#right
-object0.addPolygon(250,-250,0,
-                    250,250,500,
-                    250,250,0)
-object0.addPolygon(250,-250,0,
-                    250,-250,500,
-                    250,250,500)
-#back
-object0.addPolygon(-250,-250,500,
-                    250,250,500,
-                    -250,250,500)
-object0.addPolygon(-250,-250,500,
-                    250,-250,500,
-                    250,250,500)
-#bot
-object0.addPolygon(-250,0,500,
-                    -250,0,0,
-                    250,0,0)
-object0.addPolygon(-250,0,500,
-                    250,0,0,
-                    250,0,500)
+white = [255,255,255]
+red = [255,0,0]
+green = [0,255,0]
+object0 = obj.Object()
+
+if True:
+    #top
+    object0.addPolygon(-250,-250,400,
+                        -250,250,900,
+                        -250,250,400,red)
+    object0.addPolygon(-250,-250,400,
+                        -250,-250,900,
+                        -250,250,900,red)
+    #right
+    object0.addPolygon(250,-250,400,
+                        250,250,400,
+                        250,250,900,green)
+    object0.addPolygon(250,-250,400,
+                        250,250,900,
+                        250,-250,900,green)
+    #back
+    object0.addPolygon(-250,-250,900,
+                        250,250,900,
+                        -250,250,900,white)
+    object0.addPolygon(-250,-250,900,
+                        250,-250,900,
+                        250,250,900,white)
+    #bot
+    object0.addPolygon(-250,-250,900,
+                        -250,-250,400,
+                        250,-250,400,white)
+
+    object0.addPolygon(-250,-250,900,
+                        250,-250,400,
+                        250,-250,900,white)
+    #top
+    object0.addPolygon(-250,250,900,
+                        -100,250,550,
+                        -100,250,750,white)
+    object0.addPolygon(-250,250,900,
+                        -100,250,750,
+                        100,250,750,white)
+    object0.addPolygon(-250,250,900,
+                        100,250,750,
+                        250,250,900,white)
+    object0.addPolygon(250,250,900,
+                        100,250,750,
+                        250,250,400,white)
+    object0.addPolygon(100,250,750,
+                        100,250,550,
+                        250,250,400,white)
+    object0.addPolygon(100,250,550,
+                        -100,250,550,
+                        250,250,400,white)
+    object0.addPolygon(-100,250,550,
+                        -250,250,400,
+                        250,250,400,white)
+    object0.addPolygon(-100,250,550,
+                        -250,250,900,
+                        -250,250,400,white)
 
 layer0 = ex.Canvas()
-#trace0 = tracer.Tracer()
+trace0 = tracer.Tracer()
 
+#index = 0
+# for x in object0.cord:
+#     x.debug()
+
+#pprint.pprint(object0.cord)
+
+trace0.test(object0,layer0)
 
 #layer0.write(0,0,color)
 layer0.push("hi.ppm")

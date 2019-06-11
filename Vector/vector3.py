@@ -27,5 +27,12 @@ class Vector(trans.Transformable):
         self.y = holdz * v.x - holdx * v.z
         self.z = holdx * v.y - holdy * v.x
         self.normalize()
+    def subtract(self,v):
+        self.x = self.x - v.x
+        self.y = self.y - v.y
+        self.z = self.z - v.z
+        return self
     def dot(self,v):
         return self.x * v.x + self.y * v.y + self.z * v.z
+    def debug(self):
+        print("you are inheriting vec3 function")

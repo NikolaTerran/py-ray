@@ -1,28 +1,30 @@
 from Vector import vector3 as vec3
-from Cord import cord as co
+from Plane import plane as pl
 from Material import color
 from Material import texture as tex
 import config as c
 import math
 
+
 class Object:
-    def __init__(self,r,g,b,rfc):
-        self.cord = []
+    def __init__(self):
         self.vector3 = []
         self.material = []
-        self.color = [r,g,b]
-        self.texture = tex.Texture(rfc)
+        #self.color = []
+        self.plane = []
+        #self.texture = tex.Texture(rfc)
         self.type = 'polygon'
         self.size = 0
     def dot(self,v,index):
-        if index < self.size & index >= 0 
+        if index < self.size & index >= 0:
             return self.vector3[index].dot(self,v)
-    def addPolygon(self,x0,y0,z0,x1,y1,z1,x2,y2,z2):
-        self.cord.append([co.Cord(x0,y0,z0),co.Cord(x1,y1,z1),co.Cord(x2,y2,z2)])
+    def addPolygon(self,x0=0,y0=0,z0=0,x1=0,y1=0,z1=0,x2=0,y2=0,z2=0,color=[0,0,0],id=""):
+        self.plane.append(pl.Plane(x0,y0,z0,x1,y1,z1,x2,y2,z2,color,id))
         v0 = vec3.Vector(x0,y0,z0,x1,y1,z1)
         v1 = vec3.Vector(x2,y2,z2,x1,y1,z1)
         v0 = v0.cross(v1)
         self.vector3.append(v0)
+        #self.color.append(color)
         self.size += 1
     def addSphere(self,x0,y0,z0,r0):
         t = 0

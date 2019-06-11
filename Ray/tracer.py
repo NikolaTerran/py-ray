@@ -1,72 +1,46 @@
 from Ray import ray
 from Obj import obj
+from Cord import cord
 import config
+import pprint
+#R(t) = (1-t)C + tP
 
 class Tracer:
     def __init__(self):
         self.ray_list = []
-        for x in range(config.xlim):
-            for y in range(config.ylim):
-                ray0 = ray.Ray(x - 250,y - 205,0,config.view_x,config.view_y,config.view_z,x,y)
-                #ray0.normalize()
-                self.ray_list.append(ray0)
-                self.y += 1
+        for y in range(config.ylim):
+           for x in range(config.xlim):
+               self.ray_list.append(ray.Ray(x - config.xmax,config.ymax - y,config.pixel_z,y,x))
+        #self.ray_list.append(ray.Ray(0 - config.xmax,499 - config.ymax,config.pixel_z,499,499))
     def test(self,obj,layer):
-            # // intersect3D_RayTriangle(): find the 3D intersection of a ray with a triangle
-            # //    Input:  a ray R, and a triangle T
-            # //    Output: *I = intersection point (when it exists)
-            # //    Return: -1 = triangle is degenerate (a segment or point)
-            # //             0 =  disjoint (no intersect)
-            # //             1 =  intersect in unique point I1
-            # //             2 =  are in the same plane
-            intersect3D_RayTriangle( Ray R, Triangle T, Point* I ){
-            #Vector    u, v, n;              // triangle vectors
-            Vector    dir, w0, w;           // ray vectors
-            float     r, a, b;              // params to calc ray-plane intersect
+        z = False
 
-            // get triangle edge vectors and plane normal
-            u = obj.cord[1] - obj.cord[0]#V1 - V0;
-            v = obj.cord[2] - obj.cord[0] #V2 - T.V0;
-            n = u * v;              // cross product
-            if (n == (Vector)0)             // triangle is degenerate
-                return -1;                  // do not deal with this case
+        #limit = 100000
+        #while index < limit:
+        for a in self.ray_list:
+            for b in obj.plane:
+                z = a.intersect(b)
+                if z == True:
+                    layer.write(a.px,a.py,b.color)
+                    break
+            #if z == False:
+                #print("not intersecting")
 
-            dir = R.P1 - R.P0;              // ray direction vector
-            w0 = R.P0 - T.V0;
-            a = -dot(n,w0);
-            b = dot(n,dir);
-            if (fabs(b) < SMALL_NUM) {     // ray is  parallel to triangle plane
-                if (a == 0)                 // ray lies in triangle plane
-                    return 2;
-                else return 0;              // ray disjoint from plane
-            }
 
-            // get intersect point of ray with triangle plane
-            r = a / b;
-            if (r < 0.0)                    // ray goes away from triangle
-                return 0;                   // => no intersect
-            // for a segment, also test if (r > 1.0) => no intersect
+        # for b in obj.plane:
+        #     z = self.ray_list[0].intersect(b)
+        #     if z == True:
+        #         layer.write(self.ray_list[0].px,self.ray_list[0].py,b.color)
+        #         break
+        # if z == False:
+        #     layer.write(self.ray_list[0].px,self.ray_list[0].py,[0,0,0])
 
-            *I = R.P0 + r * dir;            // intersect point of ray and plane
-
-            // is I inside T?
-            float    uu, uv, vv, wu, wv, D;
-            uu = dot(u,u);
-            uv = dot(u,v);
-            vv = dot(v,v);
-            w = *I - T.V0;
-            wu = dot(w,u);
-            wv = dot(w,v);
-            D = uv * uv - uu * vv;
-
-            // get and test parametric coords
-            float s, t;
-            s = (uv * wv - vv * wu) / D;
-            if (s < 0.0 || s > 1.0)         // I is outside T
-                return 0;
-            t = (uv * wu - uu * wv) / D;
-            if (t < 0.0 || (s + t) > 1.0)  // I is outside T
-                return 0;
-
-            return 1;                       // I is in T
-        }
+        # for a in self.ray_list:
+        #     for b in obj.plane:
+        #         z = a.intersect(b)
+        #         if z == True:
+        #             layer.write(a.px,a.py,b.color)
+        #             break
+        #     if z == False:
+        #         layer.write(a.px,a.py,[0,0,0])
+        #         #pprint.pprint(z)

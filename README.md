@@ -1,3 +1,5 @@
+# !IMPORTANT!
+# need numpy installed '''pip install numpy'''
 # py-ray, a raytracing capable graphics engine written in python
 ## Premise:
 ### I realize how horrible my c code is due to the need of frequent use of

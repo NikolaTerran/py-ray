@@ -6,7 +6,7 @@ class Canvas:
         self.grid = [[0 for j in range(config.ylim)] for i in range(config.xlim)]
         #self.size = config.ylim * config.xlim
         x_count = 0
-        color = [255,255,255]
+        color = [0,0,0]
         y_count = 0
         while x_count < config.xlim:
             if y_count == config.ylim:
