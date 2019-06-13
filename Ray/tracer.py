@@ -15,12 +15,22 @@ class Tracer:
                self.ray_list.append(ray.Ray(x - config.xmax,config.ymax - y,config.pixel_z,y,x))
         #self.ray_list.append(ray.Ray(0 - config.xmax,499 - config.ymax,config.pixel_z,499,499))
     def test(self,obj,layer):
+        index = 0
+        t_list = []
+        for x in range(config.thread):
+            t_list.append(threading.Thread(target=self.ray_cast, args=(obj,layer,index,config.thread)))
+            index += 1
+        for x in t_list:
+            x.start()
+        for x in t_list:
+            x.join()
+            #thread.start_new_thread(ray_cast, (obj,index,config.thread,))
+    def ray_cast(self,obj,layer,index,step):
         z = False
         debug = 0
-        #thread_list = [threading.Thread(target=print_square, args=(10,)) for x in range(config.thread)]
-        for a in self.ray_list:
+        while index < (config.xlim * config.ylim):
             for b in obj.plane:
-                z = a.intersect(b)
+                z = self.ray_list[index].intersect(b)
                 if z[0] == True:
                     colour = b.color.copy()
                     # print("x: " + str(z[2][0]) + ":y: " + str(z[2][1]) + ":z: " + str(z[2][2]))
@@ -53,10 +63,12 @@ class Tracer:
                                 colour[1] = 0
                                 colour[2] = 0
                                 break
-                    print(str(a.px) + ":px py:" + str(a.py))
+                    #print(str(a.px) + ":px py:" + str(a.py))
 
-                    layer.write(a.py,a.px,colour)
-                    debug += 1
+                    layer.write(self.ray_list[index].py,self.ray_list[index].px,colour)
                     break
+            debug += 1
+            index += step
+            print(debug/(config.xlim * config.ylim))
             # if debug >= 200000:
             #     break

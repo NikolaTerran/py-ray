@@ -3,6 +3,7 @@ from Ray import tracer
 import config
 from Util import export as ex
 import pprint
+import time
 
 white = [255,255,255]
 red = [255,0,0]
@@ -73,9 +74,9 @@ trace0 = tracer.Tracer()
 #     x.debug()
 
 #pprint.pprint(object0.cord)
-
+start_time = time.time()
 trace0.test(object0,layer0)
-
+print("--- tracing took %s seconds ---" % (time.time() - start_time))
 #layer0.write(0,0,color)
 layer0.push("hi.ppm")
 #print(config.xlim)
