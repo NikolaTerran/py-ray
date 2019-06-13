@@ -7,6 +7,7 @@ import threading
 import math
 import time
 import copy
+import multiprocessing
 #R(t) = (1-t)C + tP
 
 class Tracer:
@@ -20,7 +21,7 @@ class Tracer:
         index = 0
         t_list = []
         for x in range(config.thread):
-            t_list.append(threading.Thread(target=self.ray_cast, args=(copy.deepcopy(obj),layer,index,config.thread)))
+            t_list.append(multiprocessing.Process(target=self.ray_cast, args=(copy.deepcopy(obj),layer,index,config.thread)))
             index += 1
         # for x in range(config.thread):
         #     t_list.append(threading.Thread(target=self.ray_cast, args=(obj,layer,index,config.thread)))
