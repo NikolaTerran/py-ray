@@ -3,37 +3,39 @@ from Obj import obj as obj
 
 class Canvas:
     def __init__(self):
-        self.grid = [[0 for j in range(config.ylim)] for i in range(config.xlim)]
+        self.grid = [[0 for j in range(config.xlim)] for i in range(config.ylim)]
         #self.size = config.ylim * config.xlim
+        color = [0,0,255]
         x_count = 0
-        color = [0,0,0]
         y_count = 0
-        while x_count < config.xlim:
-            if y_count == config.ylim:
-                y_count = 0
-                x_count += 1
-                if x_count == config.xlim:
+        while y_count < config.ylim:
+            if x_count == config.xlim:
+                x_count = 0
+                y_count += 1
+                if y_count == config.ylim:
                     break
-            #print(str(counter) + str(y_counter))
-            self.grid[x_count][y_count] = color
-            y_count += 1
-    def write(self,x,y,color):
-        self.grid[x][y] = color
+            self.grid[y_count][x_count] = color
+            x_count += 1
+    def write(self,y,x,color):
+        self.grid[y][x] = color
+
     def push(self,name):
         file = open(name, "w")
         file.write("P3 " + str(config.xlim) + " " + str(config.ylim) + " 255\n")
         #self.grid = self.grid.array2string()
-        x_count = 0
         y_count = 0
-        while x_count < config.xlim:
-            if y_count == config.ylim:
-                y_count = 0
-                x_count += 1
-                if x_count == config.xlim:
+        x_count = 0
+        while y_count < config.ylim:
+            if x_count == config.xlim:
+                x_count = 0
+                y_count += 1
+                if y_count == config.ylim:
                     break
-            file.write(str(self.grid[x_count][y_count][0]) + " " +
-                        str(self.grid[x_count][y_count][1]) + " " +
-                        str(self.grid[x_count][y_count][2]) + "\n")
-            y_count += 1
+            #print("y_count: " + str(y_count) + "     xcount: " + str(x_count))
+            #print(type(self.grid[5][0]))
+            file.write(str(self.grid[y_count][x_count][0]) + " " +
+                        str(self.grid[y_count][x_count][1]) + " " +
+                        str(self.grid[y_count][x_count][2]) + "\n")
+            x_count += 1
         #print(self.grid[0][0])
         file.close()

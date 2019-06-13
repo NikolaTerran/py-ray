@@ -9,61 +9,61 @@ red = [255,0,0]
 green = [0,255,0]
 object0 = obj.Object()
 
-if True:
-    #top
-    object0.addPolygon(-250,-250,400,
-                        -250,250,900,
-                        -250,250,400,red)
-    object0.addPolygon(-250,-250,400,
-                        -250,-250,900,
-                        -250,250,900,red)
-    #right
-    object0.addPolygon(250,-250,400,
-                        250,250,400,
-                        250,250,900,green)
-    object0.addPolygon(250,-250,400,
-                        250,250,900,
-                        250,-250,900,green)
-    #back
-    object0.addPolygon(-250,-250,900,
-                        250,250,900,
-                        -250,250,900,white)
-    object0.addPolygon(-250,-250,900,
-                        250,-250,900,
-                        250,250,900,white)
-    #bot
-    object0.addPolygon(-250,-250,900,
-                        -250,-250,400,
-                        250,-250,400,white)
 
-    object0.addPolygon(-250,-250,900,
-                        250,-250,400,
-                        250,-250,900,white)
-    #top
-    object0.addPolygon(-250,250,900,
-                        -100,250,550,
-                        -100,250,750,white)
-    object0.addPolygon(-250,250,900,
-                        -100,250,750,
-                        100,250,750,white)
-    object0.addPolygon(-250,250,900,
-                        100,250,750,
-                        250,250,900,white)
-    object0.addPolygon(250,250,900,
-                        100,250,750,
-                        250,250,400,white)
-    object0.addPolygon(100,250,750,
-                        100,250,550,
-                        250,250,400,white)
-    object0.addPolygon(100,250,550,
-                        -100,250,550,
-                        250,250,400,white)
-    object0.addPolygon(-100,250,550,
-                        -250,250,400,
-                        250,250,400,white)
-    object0.addPolygon(-100,250,550,
-                        -250,250,900,
-                        -250,250,400,white)
+#left
+object0.addPolygon(-250,-250,390,
+                    -250,250,890,
+                    -250,250,390,red,"0")
+object0.addPolygon(-250,-250,390,
+                    -250,-250,890,
+                    -250,250,890,red,"1")
+#right
+object0.addPolygon(250,-250,390,
+                    250,250,390,
+                    250,250,890,green,"2")
+object0.addPolygon(250,-250,390,
+                    250,250,890,
+                    250,-250,890,green,"3")
+#back
+object0.addPolygon(-250,-250,890,
+                    250,250,890,
+                    -250,250,890,white,"4")
+object0.addPolygon(-250,-250,890,
+                    250,-250,890,
+                    250,250,890,white,"5")
+#bot
+object0.addPolygon(-250,-250,890,
+                    -250,-250,390,
+                    250,-250,390,white,"6")
+
+object0.addPolygon(-250,-250,890,
+                    250,-250,390,
+                    250,-250,890,white,"7")
+#top
+object0.addPolygon(-250,250,890,
+                    -100,250,550,
+                    -100,250,750,white,"8")
+object0.addPolygon(-250,250,890,
+                    -100,250,750,
+                    100,250,750,white,"9")
+object0.addPolygon(-250,250,890,
+                    100,250,750,
+                    250,250,890,white,"10")
+object0.addPolygon(250,250,890,
+                    100,250,750,
+                    250,250,390,white,"11")
+object0.addPolygon(100,250,750,
+                    100,250,550,
+                    250,250,390,white,"12")
+object0.addPolygon(100,250,550,
+                    -100,250,550,
+                    250,250,390,white,"13")
+object0.addPolygon(-100,250,550,
+                    -250,250,390,
+                    250,250,390,white,"14")
+object0.addPolygon(-100,250,550,
+                    -250,250,890,
+                    -250,250,390,white,"15")
 
 layer0 = ex.Canvas()
 trace0 = tracer.Tracer()

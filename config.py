@@ -1,7 +1,7 @@
 xmax = 250
 ymax = 250
-xmin = -250
-ymin = -250
+#xmin = -250
+#ymin = -250
 xlim = 500
 ylim = 500
 pixel_z = 400
@@ -10,3 +10,7 @@ td_step = 0.1
 view_x = 0
 view_y = 0
 view_z = 1
+light_x = 0
+light_y = 400
+light_z = 700
+thread = 4
