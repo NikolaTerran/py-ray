@@ -4,6 +4,7 @@ import config
 from Util import export as ex
 import pprint
 import time
+import copy
 
 white = [255,255,255]
 red = [255,0,0]
@@ -68,7 +69,10 @@ object0.addPolygon(-100,250,550,
 
 layer0 = ex.Canvas()
 trace0 = tracer.Tracer()
-
+object1 = copy.deepcopy(object0)
+# print(object1.size)
+# print(object0.size)
+# time.sleep(10)
 #index = 0
 # for x in object0.cord:
 #     x.debug()

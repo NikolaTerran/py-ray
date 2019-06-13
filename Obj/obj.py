@@ -7,14 +7,15 @@ import math
 
 
 class Object:
-    def __init__(self):
+    def __init__(self,vector3=[],plane=[],type='polygon',size=0):
         self.vector3 = []
-        self.material = []
         #self.color = []
         self.plane = []
         #self.texture = tex.Texture(rfc)
         self.type = 'polygon'
         self.size = 0
+    def copy(self):
+        return Object(self.vector3.copy(),self.plane.copy(),self.type,self.size)
     def dot(self,v,index):
         if index < self.size & index >= 0:
             return self.vector3[index].dot(self,v)

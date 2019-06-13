@@ -5,6 +5,8 @@ import config
 import pprint
 import threading
 import math
+import time
+import copy
 #R(t) = (1-t)C + tP
 
 class Tracer:
@@ -18,8 +20,11 @@ class Tracer:
         index = 0
         t_list = []
         for x in range(config.thread):
-            t_list.append(threading.Thread(target=self.ray_cast, args=(obj,layer,index,config.thread)))
+            t_list.append(threading.Thread(target=self.ray_cast, args=(copy.deepcopy(obj),layer,index,config.thread)))
             index += 1
+        # for x in range(config.thread):
+        #     t_list.append(threading.Thread(target=self.ray_cast, args=(obj,layer,index,config.thread)))
+        #     index += 1
         for x in t_list:
             x.start()
         for x in t_list:
@@ -69,6 +74,9 @@ class Tracer:
                     break
             debug += 1
             index += step
-            print(debug/(config.xlim * config.ylim))
+            print(str(debug/(config.xlim * config.ylim) * config.thread * 100) + "%")
             # if debug >= 200000:
             #     break
+    def debug(self,index):
+        time.sleep(5)
+        print("thread#" + str(index) + " slept for 5 sec")
