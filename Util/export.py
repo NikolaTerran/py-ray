@@ -1,5 +1,6 @@
 import config
 from Obj import obj as obj
+import time
 
 class Canvas:
     def __init__(self):
@@ -17,7 +18,11 @@ class Canvas:
             self.grid[y_count][x_count] = color
             x_count += 1
     def write(self,y,x,color):
+        #print(str(x) + " " + str(y) + " " + str(color))
+
         self.grid[y][x] = color
+        #print(str(self.grid[y][x]) + " y:" + str(y) + " x:" + str(x))
+        #time.sleep(5)
 
     def push(self,name):
         file = open(name, "w")
@@ -25,6 +30,7 @@ class Canvas:
         #self.grid = self.grid.array2string()
         y_count = 0
         x_count = 0
+        #print(str(self.grid[y_count][x_count][0]) + " " + str(self.grid[y_count][x_count][1]) + " " + str(self.grid[y_count][x_count][2]))
         while y_count < config.ylim:
             if x_count == config.xlim:
                 x_count = 0

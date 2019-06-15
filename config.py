@@ -12,5 +12,5 @@ view_y = 0
 view_z = 1
 light_x = 0
 light_y = 400
-light_z = 700
+light_z = 600
 thread = 4
